@@ -106,7 +106,70 @@ are row vectors
 
 - The trace of a n×n square matrix A is the sum of its diagonal elements
 
+<center>
+<img src="https://latex.codecogs.com/svg.image?&space;tr(A)=\sum\limits_{i=1}^{n}a_{ii}">
+</center>
 
+- Some straightforward properties are
+
+<center>
+<img src="https://latex.codecogs.com/svg.image?tr(cA)=c\cdot&space;tr(A)"><br>
+<img src="https://latex.codecogs.com/svg.image?tr(A')=tr(A)"><br>
+<img src="https://latex.codecogs.com/svg.image?tr(A&plus;B)=tr(A)&plus;tr(B)"><br>
+<img src="https://latex.codecogs.com/svg.image?tr(I_k)=K"><br>
+<img src="https://latex.codecogs.com/svg.image?tr(AB)=tr(BA)">
+</center>
+
+### 2. Inverse(역행렬)
+
+- A *n×n* matrix A has full rank, or is nonsingular, if there is no C≠0 such that AC=0. In this case there exists a unique matrix B such that <img src="https://latex.codecogs.com/svg.image?AB=BA=I_n">.
+- This matrix is called the inverse of A and is denoted by <img src="https://latex.codecogs.com/svg.image?A^{-1}">.
+- Some properties include
+<center>
+<img src="https://latex.codecogs.com/svg.image?AA^{-1}=A^{-1}A=I_k"><br>
+<img src="https://latex.codecogs.com/svg.image?(A^{-1})'=(A')^{-1}"><br>
+<img src="https://latex.codecogs.com/svg.image?(AC)^{-1}=C^{-1}A^{-1}"><br>
+<img src="https://latex.codecogs.com/svg.image?(A+C)^{-1}=A^{-1}(A^{-1}+C^{-1})^{-1}C^{-1}"><br>
+<img src="https://latex.codecogs.com/svg.image?A^{-1}-(A+C)^{-1}=A^{-1}(A^{-1}+C^{-1})A^{-1}">
+</center>
+
+- Also, if A is an orthogonal matrix, then <img src="https://latex.codecogs.com/svg.image?A^{-1}=A">
+
+### 3. Determinant
+
+- For a general *n×n* matrix <img src="https://latex.codecogs.com/svg.image?A=[a_{ij}]">, we can define the determinant as follows.
+  - Let <img src="https://latex.codecogs.com/svg.image?\pi=(j_1,\cdots,j_n)"> denote a permutation of <img src="https://latex.codecogs.com/svg.image?\(1,\cdots,n)">.
+- There are n! such permutations. There is a unique count of the number of inversions of the indices of such permutations (relative to the natural order <img src="https://latex.codecogs.com/svg.image?\(1,\cdots,n)">), and let <img src="https://latex.codecogs.com/svg.image?\varepsilon_{\pi}=+1"> if this count is even and <img src="https://latex.codecogs.com/svg.image?\varepsilon_{\pi}=-1"> if the count is odd.
+- Then
+<center>
+<img src="https://latex.codecogs.com/svg.image?Det&space;A=\sum\limits_{\pi}\varepsilon_{\pi}a_{1j_1}a_{2j_2}\cdots&space;a_{nj_n}">
+</center>
+
+- Examples) For a 3×3 matrix <img src="https://latex.codecogs.com/svg.image?A=[a_{ij}]">,
+
+<center>
+<img src="https://latex.codecogs.com/svg.image?\begin{pmatrix}a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}\\\end{pmatrix}"><br>
+
+permutation &nbsp;&nbsp;&nbsp;&nbsp; <img src="https://latex.codecogs.com/svg.image?\varepsilon_{\pi}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; product(to be summed)
+<img src="https://latex.codecogs.com/svg.image?\left\{ 1,2,3 \right\}\;\;\;\;\;\;0\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;+a_{11}a_{22}a_{33}">
+<img src="https://latex.codecogs.com/svg.image?\left\{ 1,3,2 \right\}\;\;\;\;\;\;1\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;-a_{11}a_{23}a_{32}">
+<img src="https://latex.codecogs.com/svg.image?\left\{ 1,2,3 \right\}\;\;\;\;\;\;1\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;-a_{12}a_{21}a_{33}">
+<img src="https://latex.codecogs.com/svg.image?\left\{ 1,2,3 \right\}\;\;\;\;\;\;2\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;+a_{12}a_{23}a_{31}">
+<img src="https://latex.codecogs.com/svg.image?\left\{ 1,2,3 \right\}\;\;\;\;\;\;2\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;+a_{13}a_{21}a_{32}">
+<img src="https://latex.codecogs.com/svg.image?\left\{ 1,2,3 \right\}\;\;\;\;\;\;1\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;-a_{13}a_{22}a_{31}"><br>
+<img src="https://latex.codecogs.com/svg.image?Det&space;A=\sum\limits_{\pi}\varepsilon_{\pi}a_{1j_1}a_{2j_2}\cdots&space;a_{nj_n}">
+</center>
+
+- Some properties include
+  - <img src="https://latex.codecogs.com/svg.image?det&space;A=det&space;A'">
+  - <img src="https://latex.codecogs.com/svg.image?det(aA)=a^ndet&space;A">
+  - <img src="https://latex.codecogs.com/svg.image?det(AB)=(det&space;A)(det&space;B)">
+  - <img src="https://latex.codecogs.com/svg.image?det(A^{-1})=det(A)^{-1}">
+  - <img src="https://latex.codecogs.com/svg.image?det\begin{bmatrix}A&B\\C&D\\\end{bmatrix}=det(A)det(D-CA^{-1}B)"> if det A is invertible.
+  - <img src="https://latex.codecogs.com/svg.image?det\begin{bmatrix}A&B\\C&D\\\end{bmatrix}=det(D)det(A-BD^{-1}C)"> if det D is invertible.
+  - <img src="https://latex.codecogs.com/svg.image?det&space;A\neq0"> if and only if A is nonsingular.
+  - If A is triangular(upper or lower), then <img src="https://latex.codecogs.com/svg.image?det&space;A=\prod_{i=1}^{n}a_{ii}">
+  - If A is orthogonal, then <img src="https://latex.codecogs.com/svg.image?det&space;A=\pm&space;1">
 
 ## 04 Matrix Calculus
 ## 05 Some Features of Matrix
