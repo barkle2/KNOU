@@ -172,4 +172,34 @@ permutation &nbsp;&nbsp;&nbsp;&nbsp; <img src="https://latex.codecogs.com/svg.im
   - If A is orthogonal, then <img src="https://latex.codecogs.com/svg.image?det&space;A=\pm&space;1">
 
 ## 04 Matrix Calculus
+
+### 1. Matrix Calculus
+
+- <img src="https://latex.codecogs.com/svg.image?Let\vec{x}=(x_1,\cdots,x_n)\;be\;n\times&space;1\;and\;g(\vec{x})=g(x_1,\cdots,x_n):R^n\to&space;R.">
+- The vector derivative(벡터미분) is
+
+<center>
+<img src="https://latex.codecogs.com/svg.image?\frac{\partial}{\partial\vec{x}}g(x)=\begin{pmatrix}\frac{\partial}{\partial{x_1}}g(x)\\\vdots\\\frac{\partial}{\partial{x_n}}g(x)\end{pmatrix}">
+</center>
+
+and
+<center>
+<img src="https://latex.codecogs.com/svg.image?\frac{\partial}{\partial\vec{x}'}g(x)=\begin{pmatrix}\frac{\partial}{\partial{x_1}}g(x)&\cdots&\frac{\partial}{\partial{x_n}}g(x)\\\end{pmatrix}">
+</center>
+
+- Some properties are now summarized.
+  - <img src="https://latex.codecogs.com/svg.image?\frac{\partial}{\partial\vec{x}}(a'\vec{x})=\frac{\partial}{\partial\vec{x}}(\vec{x}'a)=a">
+  - <img src="https://latex.codecogs.com/svg.image?\frac{\partial}{\partial\vec{x}}(A\vec{x})=A">
+  - <img src="https://latex.codecogs.com/svg.image?\frac{\partial}{\partial\vec{x}}(\vec{x}'A\vec{x})=(A&plus;A')\vec{x}">
+  - <img src="https://latex.codecogs.com/svg.image?\frac{\partial^2}{\partial\vec{x}\partial\vec{x}'}(\vec{x}'A\vec{x})=(A&plus;A')">
+
 ## 05 Some Features of Matrix
+
+### 1. Eigenvalues and Eigenvectors(고유값과 고유벡터)
+
+- For any *n×n* matrix A, the roots of the *n*th degree polynomial equation in λ,
+<img src="https://latex.codecogs.com/svg.image?det(\lambda&space;I-A)=\left|\lambda&space;I-A\right|=0">, denoted by <img src="https://latex.codecogs.com/svg.image?\lambda&space;_1,\lambda&space;_2,\cdots,\lambda&space;_n">, are called the ***eigenvalues*** of the matrix A.
+
+- *n×n*인 행렬 A에 대해, 람다(λ)의 n차 다항식 <img src="https://latex.codecogs.com/svg.image?det(\lambda&space;I-A)=\left|\lambda&space;I-A\right|=0"> 의 근을 <img src="https://latex.codecogs.com/svg.image?\lambda&space;_1,\lambda&space;_2,\cdots,\lambda&space;_n"> 라고 표시하고, 행렬 A의 ***고유값***이라고 부른다.
+
+- Any nonzero n×1 vector 
