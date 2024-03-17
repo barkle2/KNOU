@@ -135,7 +135,7 @@ are row vectors
 
 - Also, if A is an orthogonal matrix, then <img src="https://latex.codecogs.com/svg.image?A^{-1}=A">
 
-### 3. Determinant
+### 3. Determinant(행렬식)
 
 - For a general *n×n* matrix <img src="https://latex.codecogs.com/svg.image?A=[a_{ij}]">, we can define the determinant as follows.
   - Let <img src="https://latex.codecogs.com/svg.image?\pi=(j_1,\cdots,j_n)"> denote a permutation of <img src="https://latex.codecogs.com/svg.image?\(1,\cdots,n)">.
@@ -202,4 +202,32 @@ and
 
 - *n×n*인 행렬 A에 대해, 람다(λ)의 n차 다항식 <img src="https://latex.codecogs.com/svg.image?det(\lambda&space;I-A)=\left|\lambda&space;I-A\right|=0"> 의 근을 <img src="https://latex.codecogs.com/svg.image?\lambda&space;_1,\lambda&space;_2,\cdots,\lambda&space;_n"> 라고 표시하고, 행렬 A의 ***고유값***이라고 부른다.
 
-- Any nonzero n×1 vector 
+- Any nonzero *n×1* vector <img src="https://latex.codecogs.com/svg.image?&space;x_i\neq&space;0"> such that <img src="https://latex.codecogs.com/svg.image?Ax_i=\lambda&space;_i&space;x_i"> is called an *eigenvector* of A corresponding to the eigenvalue <img src="https://latex.codecogs.com/svg.image?\lambda&space;_i">
+
+- <img src="https://latex.codecogs.com/svg.image?&space;x_i\neq&space;0"> 일 때, <img src="https://latex.codecogs.com/svg.image?Ax_i=\lambda&space;_i&space;x_i"> 를 만족하는 *n×1* vector를 행렬 A의 고유벡터라고 부른다. 고유벡터는 행렬의 A의 고유값에 대응하는 벡터이다.
+
+- It follows that A is nonsingular(i.e., <img src="https://latex.codecogs.com/svg.image?A^{-1}"> exists) if and only if A has no eigenvalues equal to zero(since a zero eigenvalue would imply that <img src="https://latex.codecogs.com/svg.image?\left|A\right|=0">).
+
+- 이것은 A가 비특이(nonsingular)할 때 성립한다.
+  - 행렬이 비특이하다는 것은 "행렬의 역행렬이 존재한다" 또는 "행렬의 열들이 선형독립이다" 또는 "행렬의 행렬식(determinant)이 0이 아니다"는 의미이다.
+- A가 0과 같은 고유값이 없는 경우에만 A가 비특이하다는 것을 의미이다.
+  - 행렬 A의 고유값이 0이면 <img src="https://latex.codecogs.com/svg.image?\left|A\right|=0"> 이다.
+
+### 2. Diagonalization of a Symmetric Matrix(대칭 행렬의 대각화)
+
+- For any *n×n* symmetrix matrix A, that is, A'=A, there exists an orthogonal matrix P such that <img src="https://latex.codecogs.com/svg.image?P'AP=\Lambda=diag(\lambda_1,\cdots,\lambda_n)">, where the <img src="https://latex.codecogs.com/svg.image?\lambda_1"> are the eigenvalues of A.
+- A'=A인 *n×n*인 대칭 행렬에 대해 <img src="https://latex.codecogs.com/svg.image?P'AP=\Lambda=diag(\lambda_1,\cdots,\lambda_n)">를 만족하는 직교행렬 P가 존재하면 <img src="https://latex.codecogs.com/svg.image?\lambda_i">는 행렬 A의 고유값들이다.
+  - P가 직교행렬이라는 것은 <img src="https://latex.codecogs.com/svg.image?P'P=I">를 만족하는 것을 의미한다.
+- The corresponding eigenvectors of A are the column vectors of the matrix P.
+- 행렬 A의 대응하는 고유벡터는 행렬 P의 열벡터이다.
+
+### 3. Quadratic Forms(이차형식)
+
+- For an *n×n* constant (symmetric) matrix <img src="https://latex.codecogs.com/svg.image?A={a_{ij}}">, the quadratic function of n variables x, where <imgs src="https://latex.codecogs.com/svg.image?\vec&space;x=(x_1,\cdots,x_n)'"> denoted an *n×1* vector, defined by <img src="https://latex.codecogs.com/svg.image?Q(\vec&space;x)=\vec&space;x'A\vec&space;x=\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij}x_ix_j">, is called a *quadratic form* with matrix A.
+
+- n×n인 상수(대칭) 행렬 A의 경우, n개 변수를 가지는 벡터 x의 이차함수는 행렬 A의 "이차형식"이라고 한다.
+  - 행렬 A의 이차형식은 <img src="https://latex.codecogs.com/svg.image?Q(\vec&space;x)=\vec&space;x'A\vec&space;x=\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij}x_ix_j">로 표현한다.
+
+### 4. Idempotent Matrices(멱등 행렬)
+
+- An n×n matrix A is idempotent if <img src="https://latex.codecogs.com/svg.image?A^2=AA=A">.
