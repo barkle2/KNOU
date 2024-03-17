@@ -231,3 +231,13 @@ and
 ### 4. Idempotent Matrices(멱등 행렬)
 
 - An n×n matrix A is idempotent if <img src="https://latex.codecogs.com/svg.image?A^2=AA=A">.
+
+- <img src="https://latex.codecogs.com/svg.image?A^2=AA=A">인 행렬 A는 멱등 행렬이다.
+
+- The idempotent matrices that we will consider will also be symmetric matrices, and then the symmetric idempotent matrix A is also referred to as a projection matrix.
+- 멱등 행렬이면서 대칭인 행렬은 투영행렬이라고도 합니다.
+
+- The eigenvalues of an idempotent matrix are either zero or one, since <img src="https://latex.codecogs.com/svg.image?\lambda&space;x=Ax\equiv&space;A^2x=A(Ax)=A(\lambda&space;x)=\lambda^2x"> implies that <img src="https://latex.codecogs.com/svg.image?\lambda=\lambda^2"> so that λ=0 or 1.
+
+- 멱등 행렬의 고유값은 0 또는 1이다.
+  - 왜냐하면 <img src="https://latex.codecogs.com/svg.image?\lambda&space;x=Ax\equiv&space;A^2x=A(Ax)=A(\lambda&space;x)=\lambda^2x"> 이므로, <img src="https://latex.codecogs.com/svg.image?\lambda=\lambda^2"> 이고, 그러면 λ=0 or 1 이기 때문이다.
