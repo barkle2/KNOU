@@ -1,0 +1,355 @@
+---
+title: "베이즈데이터분석"
+author: "김동현"
+학번: 202035-368086
+date: "2022-11-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(GGally)
+library(dplyr)
+library(Hmisc)
+library(rstan)
+library(ggmcmc)
+library(ggmosaic)
+library(psych)
+library(formattable)
+library(reshape2)
+library(coda)
+```
+
+# 문제1
+
+#### 밀도함수 f(X)=sin^2(x)+cos^2(2x), x∈[0, 2π] 를 따르는 랜덤 숫자를 합격-불합격 방법으로 생성하고자 한다. 다음의 질문에 답하시오
+
+#### (a) 밀도함수의 개형을 R을 이용해 그리시오.
+
+```{r}
+n = 10000
+u = runif(n, min=0, max=2*pi)
+y = sin(u)^2 + cos(2*u)^2
+
+df = data.frame(x=u, y=y)
+
+df %>% ggplot(aes(x=x, y=y)) + geom_line()
+```
+
+#### (b) f(x) 의 최대값을 구하시오.
+
+```{r}
+df %>% ggplot(aes(x=y)) + geom_histogram()
+```
+
+```{r}
+summary(y)
+```
+f(x)의 최대값은 2  
+
+#### (c) U[0, 2π] 를 제안밀도함수로 하여 합격-불합격 방법 알고리듬을 서술하시오.
+
+밀도함수의 최대값이 2이므로 M 값을 2로 하여 합격-불합격 방법을 적용한다.  
+x가 [0, 2π] 일 때, 주어진 x에 대해 (sin(x)^2 + cos(2*x)^2)/M 값이 u 보다 크거나 같으면 x를 반환하는 rtri1() 함수를 만들고, 주어진 n만큼 반복하여 실행하여 표본을 추출한다.  
+
+```{r}
+rtri1 = function() {
+  M = 2
+  accept = FALSE
+  while(accept == FALSE) {
+    x = runif(1, min=0, max=2*pi)
+    u = runif(1, min=0, max=1)
+    accept_prob = (sin(x)^2 + cos(2*x)^2)/M
+    if ( u <= accept_prob ) {
+      accept = TRUE
+    }
+  }
+  return(x)
+}
+
+rtri = function(n) {
+  x = numeric(n)
+  for(i in 1:n) x[i]=rtri1()
+  
+  return(x)
+}
+```
+
+#### (d) 위에서 서술한 알고리듬으로 5000개의 랜덤표본을 R을 이용해 f(x)에서 추출하고, 히스토그램을 그리시오. 표본평균과 표본 표준편차를 구하시오.
+
+```{r}
+n = 5000
+x = rtri(n)
+y = sin(x)^2 + cos(2*x)^2
+```
+```{r}
+hist(x)
+```
+
+```{r}
+data.frame(x=x) %>% ggplot(aes(x=x)) + geom_histogram(bins=100)
+```
+
+```{r}
+data.frame(x=x) %>% ggplot(aes(x=x)) + geom_density()
+```
+
+```{r}
+summary(x)
+```
+표본평균은 3.118 이다.  
+(랜덤표본이므로 실행할 때마다 값이 변할 수 있음)
+
+```{r}
+sd(x)
+```
+표본 표준편차는 1.761 이다. 
+(랜덤표본이므로 실행할 때마다 값이 변할 수 있음)
+
+# 문제2
+
+#### θ ~ N(0,1) I(θ≥3) 에서 분할추출법을 이용하여 표본을 추출하고자 한다. 다음에 답하시오
+
+#### a) 책의 예 9-4를 참고하여 분할추출 알고리듬을 서술하시오.
+
+9-4 예제와 비교해보면 A=3이고, 이는 합격확률이 매우 낮아지는 조건이라 할 수 있다.  
+따라서 합격-불합격 방법으로 표본을 추출하기 어렵다. 다시 말하자면 정규분포의 꼬리에서 표본을 추출하는 것이 쉽지 않다.  
+이런 경우에는 π(x)를 분할추출법을 이용한다. 정규분포를 적분하여 π(x,z)로 변경하고, 여기서 깁스추출법을 사용한다.  
+
+#### b) 5000개의 표본을 추출하고 히스토그램을 그리시오. 표본평균과 표본 표준편차를 구하시오.
+
+```{r}
+m = 5000
+mu = 0
+sig = 1
+A = 3
+
+po.theta = NULL
+po.z = NULL
+
+theta = max(A+0.5*sig, mu)
+
+for(t in 1:m) {
+  z = runif(1, 0, exp(-0.5*(theta-mu)^2/sig^2))
+  temp = sqrt(-2*sig^2*log(z))
+  theta = runif(1, max(A,mu-temp), mu+temp)
+  po.z = c(po.z, z)
+  po.theta = c(po.theta, theta)
+}
+
+post = data.frame(theta=po.theta, z=po.z)
+```
+
+```{r}
+post %>% ggplot(aes(x=theta)) + geom_histogram(bins=100)
+```
+
+
+```{r}
+post %>% mcmc %>% summary
+```
+표본평균은 3.288, 표본 표준편차는 0.269
+
+#  문제3
+
+#### 10명의 대한민국 남자들의 머리둘레와 발길이가 다음과 같이 주어졌다.
+#### 머리둘레 57.8, 58.6, 60.8, 57.6, 58.1, 60.4, 56.7, 60.0, 56.7, 54.3
+#### 발길이 27.2, 26.8, 29.9, 28.0, 27.8, 26.7, 30.8, 27.1, 26.5, 27.9
+#### 위의 데이터가 ...를 따른다고 하자. 각 모수의 사전분포가 ...를 따른다고 할 때, 스탠을 이용하여 사후표본을 추출하고자 한다. 다음의 질문에 답하시오.
+
+#### (a) 스탠을 이용하여 번인 5000개를 포함하여 총 15,000개의 사후표본을 추출하시오.
+
+```{r}
+options(mc.cores = parallel::detectCores())
+rstan_options(auto_write = TRUE)
+```
+
+#### 스탠 코드
+```{r, echo = F}
+model ="
+data {
+  // data
+  int<lower=0> n;
+  vector[2] x[n];
+}
+
+parameters {
+  vector[2] mu;
+  real<lower=-1, upper=1> rho;
+}
+
+transformed parameters {
+  vector<lower=0>[2] sigma;
+  cov_matrix[2] T;
+  
+  sigma[1] = sd(x[,1]);
+  sigma[2] = sd(x[,2]);
+  T[1,1] = sigma[1] * sigma[1];
+  T[1,2] = rho * sigma[1] * sigma[2];
+  T[2,1] = rho * sigma[1] * sigma[2];
+  T[2,2] = sigma[2] * sigma[2];
+}
+
+model {
+  rho ~ uniform(-1, 1);
+  x ~ multi_normal(mu, T);
+}
+"
+```
+
+#### R 코드
+```{r}
+x = matrix(c(57.8, 27.2, 
+             58.6, 26.8, 
+             60.8, 29.9, 
+             57.6, 28.0, 
+             58.1, 27.8,
+             60.4, 26.7,
+             56.7, 30.8,
+             60.0, 27.1,
+             56.7, 26.5,
+             54.3, 27.9), nrow=10, ncol=2, byrow=T);
+
+n = nrow(x)
+data = list(x=x, n=n)           
+
+parameters = c("rho", "mu", "sigma")
+
+samples = stan(model_code=model, data=data, pars=parameters, iter=20000, chains=1, thin=10, warmup=5000, seed=1234567)
+```
+
+#### (b) 모수들의 사후표본의 밀도함수 그림, 시계열 그림, 자기상관계수 그림을 그리고 마르코프 체인이 수렴했는지 판단하시오. 수렴하지 않았다고 판단하면 수렴했다고 판단할 때까지 사후표본의 크기를 늘리시오.
+
+#### 결과 확인
+
+```{r}
+print(samples)
+```
+```{r}
+plot(samples, plotfun="plot")
+```
+```{r}
+plot(samples, plotfun="dens")
+```
+```{r}
+plot(samples, plotfun="hist")
+```
+```{r}
+plot(samples, plotfun="trace")
+```
+```{r}
+plot(samples, plotfun="ac", pars="mu")
+```
+
+mu[1], mu[2]를 보면, 정규분포 형태를 유지하고 있고, 시계열 그림도 양호하며, 자기상관계수도 빠른 횟수 안에 0으로 수렴하고 있음을 알 수 있다. 따따라서 마르코프체인이 수렴했다고 판단된다.
+
+#### (c) 모수들의 사후평균, 사후표준편차, 95% 신용구간을 구하시오.
+
+머리둘레(mu[1])의 사후평균은 58.1, 사후표준편차는 1.98, 95% 신용구간은 [56.82~59.36] 이다.  
+발길이(mu[2])의 사후평균은 27.86, 사후표준편차는 1.42, 95% 신용구간은 [26.95~28.71] 이다.  
+
+# 문제4
+
+#### 다음은 10명의 남성들의 2라운드 골프 기록이다.
+#### 1라운드 92, 91, 85, 93, 87, 82, 100, 108, 82, 87
+#### 2라운드 93, 86, 88, 83, 79, 77, 108, 110, 85, 88
+
+#### 위의 데이터에 다음의 모형을 적합하고자 한다.
+#### (모형 수식은 생략)
+
+#### x<sub>i</sub>와 y<sub>i</sub>는 i번째 남성의 1라운드와 2라운드 기록을 나타낸다. 다음의 질문에 답하시오.
+
+#### (a) 위 데이터의 산점도를 그리시오.
+
+```{r}
+round1 = c(92, 91, 85, 93, 87, 82, 100, 108, 82, 87);
+round2 = c(93, 86, 88, 83, 79, 77, 108, 110, 85, 88);
+
+data_input = data.frame(r1=round1, r2=round2)
+
+summary(data_input)
+```
+
+```{r}
+ggplot(data_input, aes(x=r1, y=r2)) + geom_point();
+```
+
+#### (b) 위 모형을 적합하기 위한 스탠과 R 코드를 작성하고, 사후표본을 구하시오.
+
+```{r}
+model1.code ="
+data {
+  int<lower=0> n;
+  vector[n] r1;
+  vector[n] r2;
+}
+
+parameters {
+  real alpha;
+  real beta;
+  real<lower=0> sigma;
+}
+
+model {
+  for(i in 1:n) {
+    r2[i] ~ normal(alpha + beta*r1[i], sigma);
+  }
+  
+  target += 1/sigma^2;
+}
+"
+
+data=list(n=dim(data_input)[1], r2=data_input$r2, r1=data_input$r1)
+```
+
+```{r}
+model1 = stan(model_code=model1.code, data=data, seed=1234567, chains=2, warmup=5000, iter=20000, thin=10)
+```
+
+#### (c) 모수들의 사후표본의 밀도함수 그림, 시계열 그림, 자기상관계수 그림을 그리고 마르코프 체인이 수렴했는지 판단하시오. 수렴하지 않았다고 판단하면 수렴했다고 판단할 때까지 사후표본의 크기를 늘리시오.
+
+```{r}
+plot(model1, plotfun="dens")
+```
+
+```{r}
+plot(model1, plotfun="trace")
+```
+
+```{r}
+plot(model1, plotfun="ac")
+```
+밀도함수 그림은 정규분포 형태를 띠고 있으며, 시계열 그림에는 추세가 보이지 않는다.  
+자기상관계수도 0으로 수렴하는 것으로 나타난다.  
+따라서 마르코프 체인이 수렴했다고 볼 수 있다.
+
+#### (d) (α,β,σ<sup>2</sup>)의 베이즈 추정량을 구하고, 기록의 예측식을 써라.
+```{r}
+print(model1)
+```
+베이즈 추정량은 다음과 같다.  
+α: -18.57  
+β: 1.19  
+σ<sup>2</sup>: 49.70  
+  
+기록의 예측식은 다음과 같다.  
+r2 = -18.57 + 1.19*r1 + ε, ε ~ N(0, 7.05<sup>2</sup>)  
+
+### (e) (α,β,σ<sup>2</sup>)의 95% 신용구간을 구하라.
+95% 신용구간은 다음과 같다.  
+α: [-74.87 ~ 35.98]  
+β: [0.60 ~ 1.82]
+σ<sup>2</sup>: [16.56 ~ 166.41]
+
+### (f) 1라운드 기록이 84인 남성이 있었다고 한다. 이 남성의 2라운드 기록을 예측해보시오. 이 남성의 2라운드 기록의 베이즈 추정량을 구하고, 95% 예측구간을 구하시오. 확률변수의 신용구간은 예측구간이라 한다.
+
+기록 예측식에 따라 1라운드 기록이 84인 경우 2라운드 기록의 베이즈 추정량은   
+r2 = -18.57 + 1.19*84 = 81.39 이다.  
+
+오차가 표준편차가 7.05인 정규분포에 근사한다고 보면, 95% 구간은   
+[81.39 - 7.05 * 1.96 ~ 81.9 + 7.05 * 1.96]  
+= [67.57 ~ 95.21] 이다.  
