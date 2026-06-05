@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "Bash(python)",
+      "Bash(python -c \"import numpyro, jax, ISLP, pandas; print\\('numpyro', numpyro.__version__\\); print\\('jax', jax.__version__\\); print\\('ISLP ok'\\)\")",
+      "Bash(jupyter nbconvert *)",
+      "Bash(python -m jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=600 \"기말고사.ipynb\")",
+      "Bash(cd D:\\\\Workspace\\\\KNOU\\\\[6-1]베이지안 기계학습 *)",
+      "PowerShell(Start-Process \"D:\\\\Workspace\\\\KNOU\\\\[6-1]베이지안 기계학습\\\\발표자료.html\"; \"opened\")",
+      "PowerShell(Invoke-Item *)",
+      "Bash(python -c \"import torch; print\\('torch', torch.__version__\\)\")",
+      "Bash(python -m jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=900 \"기말고사.ipynb\")"
     ]
   }
 }
