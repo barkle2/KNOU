@@ -1,0 +1,580 @@
+<!DOCTYPE html><html><head>
+<title>소논문2(김동현, 202485-010007).md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*
+
+Arduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #FFFFFF;
+}
+
+.hljs,
+.hljs-subst {
+  color: #434f54;
+}
+
+.hljs-keyword,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-doctag,
+.hljs-name {
+  color: #00979D;
+}
+
+.hljs-built_in,
+.hljs-literal,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
+  color: #D35400;
+}
+
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #00979D;
+}
+
+.hljs-type,
+.hljs-string,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
+  color: #005C5F;
+}
+
+.hljs-title,
+.hljs-section {
+  color: #880000;
+  font-weight: bold;
+}
+
+.hljs-comment {
+  color: rgba(149,165,166,.8);
+}
+
+.hljs-meta-keyword {
+  color: #728E00;
+}
+
+.hljs-meta {
+  color: #434f54;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-function {
+  color: #728E00;
+}
+
+.hljs-number {
+  color: #8A7B52;  
+}
+
+</style>
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family:   "HelveticaNeue-Light", sans-serif, "宋体","Segoe WPC", "Segoe UI", "SFUIText-Light","Droid Sans Fallback";
+	font-size: 18px;
+	padding: 0 12px;
+	line-height: 1.6;
+	word-wrap: break-word;
+	color: #333333;
+}
+
+.content-wrapper{
+	max-width: 860px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom: 1px solid #eee;
+}
+
+
+h2{
+	padding-bottom: .3em;
+    font-size: 2em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+h3{
+	font-size: 1.75em;
+    line-height: 1.225;
+}
+
+h1, h2, h3 {
+	font-weight: bold;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+.table-of-contents li{
+	list-style-type: initial;
+}
+</style>
+
+<style>
+@font-face{font-family:KaTeX_AMS;font-style:normal;font-weight:400;src:url(fonts/KaTeX_AMS-Regular.woff2) format("woff2"),url(fonts/KaTeX_AMS-Regular.woff) format("woff"),url(fonts/KaTeX_AMS-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Caligraphic;font-style:normal;font-weight:700;src:url(fonts/KaTeX_Caligraphic-Bold.woff2) format("woff2"),url(fonts/KaTeX_Caligraphic-Bold.woff) format("woff"),url(fonts/KaTeX_Caligraphic-Bold.ttf) format("truetype")}@font-face{font-family:KaTeX_Caligraphic;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Caligraphic-Regular.woff2) format("woff2"),url(fonts/KaTeX_Caligraphic-Regular.woff) format("woff"),url(fonts/KaTeX_Caligraphic-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Fraktur;font-style:normal;font-weight:700;src:url(fonts/KaTeX_Fraktur-Bold.woff2) format("woff2"),url(fonts/KaTeX_Fraktur-Bold.woff) format("woff"),url(fonts/KaTeX_Fraktur-Bold.ttf) format("truetype")}@font-face{font-family:KaTeX_Fraktur;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Fraktur-Regular.woff2) format("woff2"),url(fonts/KaTeX_Fraktur-Regular.woff) format("woff"),url(fonts/KaTeX_Fraktur-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Main;font-style:normal;font-weight:700;src:url(fonts/KaTeX_Main-Bold.woff2) format("woff2"),url(fonts/KaTeX_Main-Bold.woff) format("woff"),url(fonts/KaTeX_Main-Bold.ttf) format("truetype")}@font-face{font-family:KaTeX_Main;font-style:italic;font-weight:700;src:url(fonts/KaTeX_Main-BoldItalic.woff2) format("woff2"),url(fonts/KaTeX_Main-BoldItalic.woff) format("woff"),url(fonts/KaTeX_Main-BoldItalic.ttf) format("truetype")}@font-face{font-family:KaTeX_Main;font-style:italic;font-weight:400;src:url(fonts/KaTeX_Main-Italic.woff2) format("woff2"),url(fonts/KaTeX_Main-Italic.woff) format("woff"),url(fonts/KaTeX_Main-Italic.ttf) format("truetype")}@font-face{font-family:KaTeX_Main;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Main-Regular.woff2) format("woff2"),url(fonts/KaTeX_Main-Regular.woff) format("woff"),url(fonts/KaTeX_Main-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Math;font-style:italic;font-weight:700;src:url(fonts/KaTeX_Math-BoldItalic.woff2) format("woff2"),url(fonts/KaTeX_Math-BoldItalic.woff) format("woff"),url(fonts/KaTeX_Math-BoldItalic.ttf) format("truetype")}@font-face{font-family:KaTeX_Math;font-style:italic;font-weight:400;src:url(fonts/KaTeX_Math-Italic.woff2) format("woff2"),url(fonts/KaTeX_Math-Italic.woff) format("woff"),url(fonts/KaTeX_Math-Italic.ttf) format("truetype")}@font-face{font-family:"KaTeX_SansSerif";font-style:normal;font-weight:700;src:url(fonts/KaTeX_SansSerif-Bold.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Bold.woff) format("woff"),url(fonts/KaTeX_SansSerif-Bold.ttf) format("truetype")}@font-face{font-family:"KaTeX_SansSerif";font-style:italic;font-weight:400;src:url(fonts/KaTeX_SansSerif-Italic.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Italic.woff) format("woff"),url(fonts/KaTeX_SansSerif-Italic.ttf) format("truetype")}@font-face{font-family:"KaTeX_SansSerif";font-style:normal;font-weight:400;src:url(fonts/KaTeX_SansSerif-Regular.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Regular.woff) format("woff"),url(fonts/KaTeX_SansSerif-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Script;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Script-Regular.woff2) format("woff2"),url(fonts/KaTeX_Script-Regular.woff) format("woff"),url(fonts/KaTeX_Script-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Size1;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Size1-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size1-Regular.woff) format("woff"),url(fonts/KaTeX_Size1-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Size2;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Size2-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size2-Regular.woff) format("woff"),url(fonts/KaTeX_Size2-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Size3;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Size3-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size3-Regular.woff) format("woff"),url(fonts/KaTeX_Size3-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Size4;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Size4-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size4-Regular.woff) format("woff"),url(fonts/KaTeX_Size4-Regular.ttf) format("truetype")}@font-face{font-family:KaTeX_Typewriter;font-style:normal;font-weight:400;src:url(fonts/KaTeX_Typewriter-Regular.woff2) format("woff2"),url(fonts/KaTeX_Typewriter-Regular.woff) format("woff"),url(fonts/KaTeX_Typewriter-Regular.ttf) format("truetype")}.katex{text-rendering:auto;font:normal 1.21em KaTeX_Main,Times New Roman,serif;line-height:1.2;text-indent:0}.katex *{-ms-high-contrast-adjust:none!important;border-color:currentColor}.katex .katex-version:after{content:"0.16.2"}.katex .katex-mathml{clip:rect(1px,1px,1px,1px);border:0;height:1px;overflow:hidden;padding:0;position:absolute;width:1px}.katex .katex-html>.newline{display:block}.katex .base{position:relative;white-space:nowrap;width:-webkit-min-content;width:-moz-min-content;width:min-content}.katex .base,.katex .strut{display:inline-block}.katex .textbf{font-weight:700}.katex .textit{font-style:italic}.katex .textrm{font-family:KaTeX_Main}.katex .textsf{font-family:KaTeX_SansSerif}.katex .texttt{font-family:KaTeX_Typewriter}.katex .mathnormal{font-family:KaTeX_Math;font-style:italic}.katex .mathit{font-family:KaTeX_Main;font-style:italic}.katex .mathrm{font-style:normal}.katex .mathbf{font-family:KaTeX_Main;font-weight:700}.katex .boldsymbol{font-family:KaTeX_Math;font-style:italic;font-weight:700}.katex .amsrm,.katex .mathbb,.katex .textbb{font-family:KaTeX_AMS}.katex .mathcal{font-family:KaTeX_Caligraphic}.katex .mathfrak,.katex .textfrak{font-family:KaTeX_Fraktur}.katex .mathtt{font-family:KaTeX_Typewriter}.katex .mathscr,.katex .textscr{font-family:KaTeX_Script}.katex .mathsf,.katex .textsf{font-family:KaTeX_SansSerif}.katex .mathboldsf,.katex .textboldsf{font-family:KaTeX_SansSerif;font-weight:700}.katex .mathitsf,.katex .textitsf{font-family:KaTeX_SansSerif;font-style:italic}.katex .mainrm{font-family:KaTeX_Main;font-style:normal}.katex .vlist-t{border-collapse:collapse;display:inline-table;table-layout:fixed}.katex .vlist-r{display:table-row}.katex .vlist{display:table-cell;position:relative;vertical-align:bottom}.katex .vlist>span{display:block;height:0;position:relative}.katex .vlist>span>span{display:inline-block}.katex .vlist>span>.pstrut{overflow:hidden;width:0}.katex .vlist-t2{margin-right:-2px}.katex .vlist-s{display:table-cell;font-size:1px;min-width:2px;vertical-align:bottom;width:2px}.katex .vbox{align-items:baseline;display:inline-flex;flex-direction:column}.katex .hbox{width:100%}.katex .hbox,.katex .thinbox{display:inline-flex;flex-direction:row}.katex .thinbox{max-width:0;width:0}.katex .msupsub{text-align:left}.katex .mfrac>span>span{text-align:center}.katex .mfrac .frac-line{border-bottom-style:solid;display:inline-block;width:100%}.katex .hdashline,.katex .hline,.katex .mfrac .frac-line,.katex .overline .overline-line,.katex .rule,.katex .underline .underline-line{min-height:1px}.katex .mspace{display:inline-block}.katex .clap,.katex .llap,.katex .rlap{position:relative;width:0}.katex .clap>.inner,.katex .llap>.inner,.katex .rlap>.inner{position:absolute}.katex .clap>.fix,.katex .llap>.fix,.katex .rlap>.fix{display:inline-block}.katex .llap>.inner{right:0}.katex .clap>.inner,.katex .rlap>.inner{left:0}.katex .clap>.inner>span{margin-left:-50%;margin-right:50%}.katex .rule{border:0 solid;display:inline-block;position:relative}.katex .hline,.katex .overline .overline-line,.katex .underline .underline-line{border-bottom-style:solid;display:inline-block;width:100%}.katex .hdashline{border-bottom-style:dashed;display:inline-block;width:100%}.katex .sqrt>.root{margin-left:.27777778em;margin-right:-.55555556em}.katex .fontsize-ensurer.reset-size1.size1,.katex .sizing.reset-size1.size1{font-size:1em}.katex .fontsize-ensurer.reset-size1.size2,.katex .sizing.reset-size1.size2{font-size:1.2em}.katex .fontsize-ensurer.reset-size1.size3,.katex .sizing.reset-size1.size3{font-size:1.4em}.katex .fontsize-ensurer.reset-size1.size4,.katex .sizing.reset-size1.size4{font-size:1.6em}.katex .fontsize-ensurer.reset-size1.size5,.katex .sizing.reset-size1.size5{font-size:1.8em}.katex .fontsize-ensurer.reset-size1.size6,.katex .sizing.reset-size1.size6{font-size:2em}.katex .fontsize-ensurer.reset-size1.size7,.katex .sizing.reset-size1.size7{font-size:2.4em}.katex .fontsize-ensurer.reset-size1.size8,.katex .sizing.reset-size1.size8{font-size:2.88em}.katex .fontsize-ensurer.reset-size1.size9,.katex .sizing.reset-size1.size9{font-size:3.456em}.katex .fontsize-ensurer.reset-size1.size10,.katex .sizing.reset-size1.size10{font-size:4.148em}.katex .fontsize-ensurer.reset-size1.size11,.katex .sizing.reset-size1.size11{font-size:4.976em}.katex .fontsize-ensurer.reset-size2.size1,.katex .sizing.reset-size2.size1{font-size:.83333333em}.katex .fontsize-ensurer.reset-size2.size2,.katex .sizing.reset-size2.size2{font-size:1em}.katex .fontsize-ensurer.reset-size2.size3,.katex .sizing.reset-size2.size3{font-size:1.16666667em}.katex .fontsize-ensurer.reset-size2.size4,.katex .sizing.reset-size2.size4{font-size:1.33333333em}.katex .fontsize-ensurer.reset-size2.size5,.katex .sizing.reset-size2.size5{font-size:1.5em}.katex .fontsize-ensurer.reset-size2.size6,.katex .sizing.reset-size2.size6{font-size:1.66666667em}.katex .fontsize-ensurer.reset-size2.size7,.katex .sizing.reset-size2.size7{font-size:2em}.katex .fontsize-ensurer.reset-size2.size8,.katex .sizing.reset-size2.size8{font-size:2.4em}.katex .fontsize-ensurer.reset-size2.size9,.katex .sizing.reset-size2.size9{font-size:2.88em}.katex .fontsize-ensurer.reset-size2.size10,.katex .sizing.reset-size2.size10{font-size:3.45666667em}.katex .fontsize-ensurer.reset-size2.size11,.katex .sizing.reset-size2.size11{font-size:4.14666667em}.katex .fontsize-ensurer.reset-size3.size1,.katex .sizing.reset-size3.size1{font-size:.71428571em}.katex .fontsize-ensurer.reset-size3.size2,.katex .sizing.reset-size3.size2{font-size:.85714286em}.katex .fontsize-ensurer.reset-size3.size3,.katex .sizing.reset-size3.size3{font-size:1em}.katex .fontsize-ensurer.reset-size3.size4,.katex .sizing.reset-size3.size4{font-size:1.14285714em}.katex .fontsize-ensurer.reset-size3.size5,.katex .sizing.reset-size3.size5{font-size:1.28571429em}.katex .fontsize-ensurer.reset-size3.size6,.katex .sizing.reset-size3.size6{font-size:1.42857143em}.katex .fontsize-ensurer.reset-size3.size7,.katex .sizing.reset-size3.size7{font-size:1.71428571em}.katex .fontsize-ensurer.reset-size3.size8,.katex .sizing.reset-size3.size8{font-size:2.05714286em}.katex .fontsize-ensurer.reset-size3.size9,.katex .sizing.reset-size3.size9{font-size:2.46857143em}.katex .fontsize-ensurer.reset-size3.size10,.katex .sizing.reset-size3.size10{font-size:2.96285714em}.katex .fontsize-ensurer.reset-size3.size11,.katex .sizing.reset-size3.size11{font-size:3.55428571em}.katex .fontsize-ensurer.reset-size4.size1,.katex .sizing.reset-size4.size1{font-size:.625em}.katex .fontsize-ensurer.reset-size4.size2,.katex .sizing.reset-size4.size2{font-size:.75em}.katex .fontsize-ensurer.reset-size4.size3,.katex .sizing.reset-size4.size3{font-size:.875em}.katex .fontsize-ensurer.reset-size4.size4,.katex .sizing.reset-size4.size4{font-size:1em}.katex .fontsize-ensurer.reset-size4.size5,.katex .sizing.reset-size4.size5{font-size:1.125em}.katex .fontsize-ensurer.reset-size4.size6,.katex .sizing.reset-size4.size6{font-size:1.25em}.katex .fontsize-ensurer.reset-size4.size7,.katex .sizing.reset-size4.size7{font-size:1.5em}.katex .fontsize-ensurer.reset-size4.size8,.katex .sizing.reset-size4.size8{font-size:1.8em}.katex .fontsize-ensurer.reset-size4.size9,.katex .sizing.reset-size4.size9{font-size:2.16em}.katex .fontsize-ensurer.reset-size4.size10,.katex .sizing.reset-size4.size10{font-size:2.5925em}.katex .fontsize-ensurer.reset-size4.size11,.katex .sizing.reset-size4.size11{font-size:3.11em}.katex .fontsize-ensurer.reset-size5.size1,.katex .sizing.reset-size5.size1{font-size:.55555556em}.katex .fontsize-ensurer.reset-size5.size2,.katex .sizing.reset-size5.size2{font-size:.66666667em}.katex .fontsize-ensurer.reset-size5.size3,.katex .sizing.reset-size5.size3{font-size:.77777778em}.katex .fontsize-ensurer.reset-size5.size4,.katex .sizing.reset-size5.size4{font-size:.88888889em}.katex .fontsize-ensurer.reset-size5.size5,.katex .sizing.reset-size5.size5{font-size:1em}.katex .fontsize-ensurer.reset-size5.size6,.katex .sizing.reset-size5.size6{font-size:1.11111111em}.katex .fontsize-ensurer.reset-size5.size7,.katex .sizing.reset-size5.size7{font-size:1.33333333em}.katex .fontsize-ensurer.reset-size5.size8,.katex .sizing.reset-size5.size8{font-size:1.6em}.katex .fontsize-ensurer.reset-size5.size9,.katex .sizing.reset-size5.size9{font-size:1.92em}.katex .fontsize-ensurer.reset-size5.size10,.katex .sizing.reset-size5.size10{font-size:2.30444444em}.katex .fontsize-ensurer.reset-size5.size11,.katex .sizing.reset-size5.size11{font-size:2.76444444em}.katex .fontsize-ensurer.reset-size6.size1,.katex .sizing.reset-size6.size1{font-size:.5em}.katex .fontsize-ensurer.reset-size6.size2,.katex .sizing.reset-size6.size2{font-size:.6em}.katex .fontsize-ensurer.reset-size6.size3,.katex .sizing.reset-size6.size3{font-size:.7em}.katex .fontsize-ensurer.reset-size6.size4,.katex .sizing.reset-size6.size4{font-size:.8em}.katex .fontsize-ensurer.reset-size6.size5,.katex .sizing.reset-size6.size5{font-size:.9em}.katex .fontsize-ensurer.reset-size6.size6,.katex .sizing.reset-size6.size6{font-size:1em}.katex .fontsize-ensurer.reset-size6.size7,.katex .sizing.reset-size6.size7{font-size:1.2em}.katex .fontsize-ensurer.reset-size6.size8,.katex .sizing.reset-size6.size8{font-size:1.44em}.katex .fontsize-ensurer.reset-size6.size9,.katex .sizing.reset-size6.size9{font-size:1.728em}.katex .fontsize-ensurer.reset-size6.size10,.katex .sizing.reset-size6.size10{font-size:2.074em}.katex .fontsize-ensurer.reset-size6.size11,.katex .sizing.reset-size6.size11{font-size:2.488em}.katex .fontsize-ensurer.reset-size7.size1,.katex .sizing.reset-size7.size1{font-size:.41666667em}.katex .fontsize-ensurer.reset-size7.size2,.katex .sizing.reset-size7.size2{font-size:.5em}.katex .fontsize-ensurer.reset-size7.size3,.katex .sizing.reset-size7.size3{font-size:.58333333em}.katex .fontsize-ensurer.reset-size7.size4,.katex .sizing.reset-size7.size4{font-size:.66666667em}.katex .fontsize-ensurer.reset-size7.size5,.katex .sizing.reset-size7.size5{font-size:.75em}.katex .fontsize-ensurer.reset-size7.size6,.katex .sizing.reset-size7.size6{font-size:.83333333em}.katex .fontsize-ensurer.reset-size7.size7,.katex .sizing.reset-size7.size7{font-size:1em}.katex .fontsize-ensurer.reset-size7.size8,.katex .sizing.reset-size7.size8{font-size:1.2em}.katex .fontsize-ensurer.reset-size7.size9,.katex .sizing.reset-size7.size9{font-size:1.44em}.katex .fontsize-ensurer.reset-size7.size10,.katex .sizing.reset-size7.size10{font-size:1.72833333em}.katex .fontsize-ensurer.reset-size7.size11,.katex .sizing.reset-size7.size11{font-size:2.07333333em}.katex .fontsize-ensurer.reset-size8.size1,.katex .sizing.reset-size8.size1{font-size:.34722222em}.katex .fontsize-ensurer.reset-size8.size2,.katex .sizing.reset-size8.size2{font-size:.41666667em}.katex .fontsize-ensurer.reset-size8.size3,.katex .sizing.reset-size8.size3{font-size:.48611111em}.katex .fontsize-ensurer.reset-size8.size4,.katex .sizing.reset-size8.size4{font-size:.55555556em}.katex .fontsize-ensurer.reset-size8.size5,.katex .sizing.reset-size8.size5{font-size:.625em}.katex .fontsize-ensurer.reset-size8.size6,.katex .sizing.reset-size8.size6{font-size:.69444444em}.katex .fontsize-ensurer.reset-size8.size7,.katex .sizing.reset-size8.size7{font-size:.83333333em}.katex .fontsize-ensurer.reset-size8.size8,.katex .sizing.reset-size8.size8{font-size:1em}.katex .fontsize-ensurer.reset-size8.size9,.katex .sizing.reset-size8.size9{font-size:1.2em}.katex .fontsize-ensurer.reset-size8.size10,.katex .sizing.reset-size8.size10{font-size:1.44027778em}.katex .fontsize-ensurer.reset-size8.size11,.katex .sizing.reset-size8.size11{font-size:1.72777778em}.katex .fontsize-ensurer.reset-size9.size1,.katex .sizing.reset-size9.size1{font-size:.28935185em}.katex .fontsize-ensurer.reset-size9.size2,.katex .sizing.reset-size9.size2{font-size:.34722222em}.katex .fontsize-ensurer.reset-size9.size3,.katex .sizing.reset-size9.size3{font-size:.40509259em}.katex .fontsize-ensurer.reset-size9.size4,.katex .sizing.reset-size9.size4{font-size:.46296296em}.katex .fontsize-ensurer.reset-size9.size5,.katex .sizing.reset-size9.size5{font-size:.52083333em}.katex .fontsize-ensurer.reset-size9.size6,.katex .sizing.reset-size9.size6{font-size:.5787037em}.katex .fontsize-ensurer.reset-size9.size7,.katex .sizing.reset-size9.size7{font-size:.69444444em}.katex .fontsize-ensurer.reset-size9.size8,.katex .sizing.reset-size9.size8{font-size:.83333333em}.katex .fontsize-ensurer.reset-size9.size9,.katex .sizing.reset-size9.size9{font-size:1em}.katex .fontsize-ensurer.reset-size9.size10,.katex .sizing.reset-size9.size10{font-size:1.20023148em}.katex .fontsize-ensurer.reset-size9.size11,.katex .sizing.reset-size9.size11{font-size:1.43981481em}.katex .fontsize-ensurer.reset-size10.size1,.katex .sizing.reset-size10.size1{font-size:.24108004em}.katex .fontsize-ensurer.reset-size10.size2,.katex .sizing.reset-size10.size2{font-size:.28929605em}.katex .fontsize-ensurer.reset-size10.size3,.katex .sizing.reset-size10.size3{font-size:.33751205em}.katex .fontsize-ensurer.reset-size10.size4,.katex .sizing.reset-size10.size4{font-size:.38572806em}.katex .fontsize-ensurer.reset-size10.size5,.katex .sizing.reset-size10.size5{font-size:.43394407em}.katex .fontsize-ensurer.reset-size10.size6,.katex .sizing.reset-size10.size6{font-size:.48216008em}.katex .fontsize-ensurer.reset-size10.size7,.katex .sizing.reset-size10.size7{font-size:.57859209em}.katex .fontsize-ensurer.reset-size10.size8,.katex .sizing.reset-size10.size8{font-size:.69431051em}.katex .fontsize-ensurer.reset-size10.size9,.katex .sizing.reset-size10.size9{font-size:.83317261em}.katex .fontsize-ensurer.reset-size10.size10,.katex .sizing.reset-size10.size10{font-size:1em}.katex .fontsize-ensurer.reset-size10.size11,.katex .sizing.reset-size10.size11{font-size:1.19961427em}.katex .fontsize-ensurer.reset-size11.size1,.katex .sizing.reset-size11.size1{font-size:.20096463em}.katex .fontsize-ensurer.reset-size11.size2,.katex .sizing.reset-size11.size2{font-size:.24115756em}.katex .fontsize-ensurer.reset-size11.size3,.katex .sizing.reset-size11.size3{font-size:.28135048em}.katex .fontsize-ensurer.reset-size11.size4,.katex .sizing.reset-size11.size4{font-size:.32154341em}.katex .fontsize-ensurer.reset-size11.size5,.katex .sizing.reset-size11.size5{font-size:.36173633em}.katex .fontsize-ensurer.reset-size11.size6,.katex .sizing.reset-size11.size6{font-size:.40192926em}.katex .fontsize-ensurer.reset-size11.size7,.katex .sizing.reset-size11.size7{font-size:.48231511em}.katex .fontsize-ensurer.reset-size11.size8,.katex .sizing.reset-size11.size8{font-size:.57877814em}.katex .fontsize-ensurer.reset-size11.size9,.katex .sizing.reset-size11.size9{font-size:.69453376em}.katex .fontsize-ensurer.reset-size11.size10,.katex .sizing.reset-size11.size10{font-size:.83360129em}.katex .fontsize-ensurer.reset-size11.size11,.katex .sizing.reset-size11.size11{font-size:1em}.katex .delimsizing.size1{font-family:KaTeX_Size1}.katex .delimsizing.size2{font-family:KaTeX_Size2}.katex .delimsizing.size3{font-family:KaTeX_Size3}.katex .delimsizing.size4{font-family:KaTeX_Size4}.katex .delimsizing.mult .delim-size1>span{font-family:KaTeX_Size1}.katex .delimsizing.mult .delim-size4>span{font-family:KaTeX_Size4}.katex .nulldelimiter{display:inline-block;width:.12em}.katex .delimcenter,.katex .op-symbol{position:relative}.katex .op-symbol.small-op{font-family:KaTeX_Size1}.katex .op-symbol.large-op{font-family:KaTeX_Size2}.katex .accent>.vlist-t,.katex .op-limits>.vlist-t{text-align:center}.katex .accent .accent-body{position:relative}.katex .accent .accent-body:not(.accent-full){width:0}.katex .overlay{display:block}.katex .mtable .vertical-separator{display:inline-block;min-width:1px}.katex .mtable .arraycolsep{display:inline-block}.katex .mtable .col-align-c>.vlist-t{text-align:center}.katex .mtable .col-align-l>.vlist-t{text-align:left}.katex .mtable .col-align-r>.vlist-t{text-align:right}.katex .svg-align{text-align:left}.katex svg{fill:currentColor;stroke:currentColor;fill-rule:nonzero;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:block;height:inherit;position:absolute;width:100%}.katex svg path{stroke:none}.katex img{border-style:none;max-height:none;max-width:none;min-height:0;min-width:0}.katex .stretchy{display:block;overflow:hidden;position:relative;width:100%}.katex .stretchy:after,.katex .stretchy:before{content:""}.katex .hide-tail{overflow:hidden;position:relative;width:100%}.katex .halfarrow-left{left:0;overflow:hidden;position:absolute;width:50.2%}.katex .halfarrow-right{overflow:hidden;position:absolute;right:0;width:50.2%}.katex .brace-left{left:0;overflow:hidden;position:absolute;width:25.1%}.katex .brace-center{left:25%;overflow:hidden;position:absolute;width:50%}.katex .brace-right{overflow:hidden;position:absolute;right:0;width:25.1%}.katex .x-arrow-pad{padding:0 .5em}.katex .cd-arrow-pad{padding:0 .55556em 0 .27778em}.katex .mover,.katex .munder,.katex .x-arrow{text-align:center}.katex .boxpad{padding:0 .3em}.katex .fbox,.katex .fcolorbox{border:.04em solid;box-sizing:border-box}.katex .cancel-pad{padding:0 .2em}.katex .cancel-lap{margin-left:-.2em;margin-right:-.2em}.katex .sout{border-bottom-style:solid;border-bottom-width:.08em}.katex .angl{border-right:.049em solid;border-top:.049em solid;box-sizing:border-box;margin-right:.03889em}.katex .anglpad{padding:0 .03889em}.katex .eqn-num:before{content:"(" counter(katexEqnNo) ")";counter-increment:katexEqnNo}.katex .mml-eqn-num:before{content:"(" counter(mmlEqnNo) ")";counter-increment:mmlEqnNo}.katex .mtr-glue{width:50%}.katex .cd-vert-arrow{display:inline-block;position:relative}.katex .cd-label-left{display:inline-block;position:absolute;right:calc(50% + .3em);text-align:left}.katex .cd-label-right{display:inline-block;left:calc(50% + .3em);position:absolute;text-align:right}.katex-display{display:block;margin:1em 0;text-align:center}.katex-display>.katex{display:block;text-align:center;white-space:nowrap}.katex-display>.katex>.katex-html{display:block;position:relative}.katex-display>.katex>.katex-html>.tag{position:absolute;right:0}.katex-display.leqno>.katex>.katex-html>.tag{left:0;right:auto}.katex-display.fleqn>.katex{padding-left:2em;text-align:left}body{counter-reset:katexEqnNo mmlEqnNo}
+
+</style>
+
+</head>
+<body>
+    <div class="content-wrapper">
+        <h2 id="%EB%8B%A8%EC%B2%B4%EA%B5%90%EC%84%AD%EC%82%AC%ED%95%AD%EC%9D%98-%EB%8B%B9%EB%B6%80%EC%99%80-%EC%9F%81%EC%9D%98%ED%96%89%EC%9C%84%EC%9D%98-%EC%A0%95%EB%8B%B9%EC%84%B1" tabindex="-1">단체교섭사항의 당부와 쟁의행위의 정당성</h2>
+<h3 id="1.%EA%B8%B0%EC%A1%B4-%EC%97%B0%EA%B5%AC%EC%9D%98-%EC%A0%95%EB%A6%AC" tabindex="-1">1.기존 연구의 정리</h3>
+<h4 id="(1)-%EC%9F%81%EC%9D%98%ED%96%89%EC%9C%84-%EA%B0%9C%EB%85%90%EC%9D%98-%EC%B2%B4%EA%B3%84%EC%A0%81-%EC%9D%B4%ED%95%B4(2017%EB%85%84)" tabindex="-1">(1) 쟁의행위 개념의 체계적 이해(2017년)</h4>
+<p>오윤식(법무법인 공간 변호사)</p>
+<h5 id="'%EA%B7%BC%EB%A1%9C%EC%A1%B0%EA%B1%B4%EC%9D%98-%ED%96%A5%EC%83%81'%EC%9D%98-%EB%B2%94%EC%9C%84" tabindex="-1">'근로조건의 향상'의 범위</h5>
+<ul>
+<li>헌법 제33조가 규율하는 '근로조건의 향상'에는 i)근로조건사항, ii)근로조건에 밀접하게 관련된 사항, iii)근로조건의 형성에 밀접하게 관련된 사항이 포함된다.
+<ul>
+<li>ii)에는 근로조건에 밀접하게 관련된 경영사항이 포함되며</li>
+<li>iii)에는 노조전임제, 체크오프 등 일정한 집단적 노동관계에 관한 사항이 포함된다</li>
+</ul>
+</li>
+</ul>
+<h5 id="'%EA%B7%BC%EB%A1%9C%EC%9E%90-%EC%B8%A1-%EB%A9%B4%EC%B1%85%EC%A0%81-%EC%9F%81%EC%9D%98%ED%96%89%EC%9C%84'" tabindex="-1">'근로자 측 면책적 쟁의행위'</h5>
+<ul>
+<li>노동조합법 제2조 제7호에 따라 책임이 면제되는 '근로자 측 면책적 쟁의행위'는 노동조합 또는 이에 준하는 단결체가 근로조건의 유지·개선을 위하여 자신의 주장을 관철하거나 보일 목적으로 사용자 또는 사용자단체에 대하여 행하는 행위로
+<ul>
+<li>'노무제공의 정지와 이 정지에 의한 대사용자 압력의 유지·강화하기 위한 수단'을 통하여 그 업무의 정상적 운영을 저해하는 행위이다.</li>
+<li>노동조합에 준하는 단결체에는 i)노동조합법 제2조 제4호의 요건을 모두 갖추었으나 노동조합으로서의 설립신고를 하지 않은 단결체, ii)노동조합법 제2조 제4호의 '본문의 요건'을 모두 갖추었으나 '그 단서 (가)목 및 (라)목'이 문제되어 설립신고를 필하지 못한 단결체, iii)일시적 쟁의단이 포함된다.</li>
+</ul>
+</li>
+</ul>
+<h5 id="'%EA%B4%91%EC%9D%98%EC%9D%98-%EC%A1%B0%ED%95%A9%ED%99%9C%EB%8F%99'" tabindex="-1">'광의의 조합활동'</h5>
+<ul>
+<li>광의의 조합활동은 '대내적 조합활동'과 '대외적 조합활동'으로 크게 구분되고,
+<ul>
+<li>대외적 조합활동은 단체교섭, 단체행동, 기타노조활동으로 구분되며,
+<ul>
+<li>단체행동은 업무저해성이 있는 쟁의행위, 업무저해성이 있는 단체행동, 업무저해성이 없는 쟁의행위으로 구분된다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="'%EC%97%85%EB%AC%B4%EC%A0%80%ED%95%B4%EC%84%B1'%EC%9D%98-%ED%8C%90%EB%8B%A8-%EA%B8%B0%EC%A4%80" tabindex="-1">'업무저해성'의 판단 기준</h5>
+<ul>
+<li>업무저해성이 있는지 여부는 당해 행위가 벌어지는 업무의 성격, 참여자수, 적시된 표현의 내용, 사용된 도구의 성격, 그 행위를 하는 목적 또는 의도, 기타 당해 행위가 벌어직 당시의 제반 사정 등을 종합적으로 고려하여 판단해야 한다.</li>
+</ul>
+<h5 id="%EA%B7%BC%EB%A1%9C%EC%9E%90-%EC%B8%A1-%EB%A9%B4%EC%B1%85%EC%A0%81-%EC%9F%81%EC%9D%98%ED%96%89%EC%9C%84%EC%9D%98-%EC%A0%95%EB%8B%B9%EC%84%B1%EC%9D%98-%EB%82%B4%EC%9A%A9-%EB%B3%80%EA%B2%BD%EC%95%88" tabindex="-1">근로자 측 면책적 쟁의행위의 정당성의 내용 변경안</h5>
+<ul>
+<li>"당해 쟁의행위와 시기와 절차가 법령의 규정에 따른 것으로서 정당하여야 할 뿐 아니라, 그 방법과 태양이 폭력이나 파괴행위를 수반하는 등 반사회성을 띤 행위가 아닌 정당한 범위 내의 것이어야 한다"</li>
+</ul>
+<h4 id="(2)-%EC%9F%81%EC%9D%98%ED%96%89%EC%9C%84%EC%99%80-%EB%AF%BC%EC%82%AC%EC%B1%85%EC%9E%84(2011%EB%85%84)" tabindex="-1">(2) 쟁의행위와 민사책임(2011년)</h4>
+<p>신권철(서울시립대학교 법학전문대학원 부교수)</p>
+<ul>
+<li>쟁의행위는 헌법상 보장된 단체행동권의 한 내용이다.
+<ul>
+<li>면책적 효과를 얻을 수 있는 쟁의행위는 '정당한 쟁의행위'로 제한되며, 그 정당성 요건으로 쟁의행위의 주체, 목적, 절차, 수단과 방법을 나누어 그 요건을 모두 갖추어야만 노동조합법이 정한 민형사상 책임과 징계책임을 면할 수 있다.</li>
+</ul>
+</li>
+<li>쟁의행위의 보장은 종속노동에 대해 노동의 자율성과 항의성을 보장받기 위한 것이다.
+<ul>
+<li>종속노동은 근로자 노동의 자율성을 제약하며, 이를 극복하기 위한 방법, 즉 노동의 자율성을 제약하는 사용자를 극복하는 방법이 쟁의행위이며, 쟁의행위란 근로자 노동이 가지는 항의성을 표현하는 것이다.</li>
+<li>2011년 3월 대법원은 쟁의행위로 인한 업무방해죄에 대해 종전의 판례 태도를 변경하여 쟁의행위가 일정 범위에서 형사상으로 범죄를 구성하지 않는다는 취지로 판단하고 있다.</li>
+</ul>
+</li>
+<li>본 논문은 노무제공의 집단적 거부인 부작위로서의 쟁의행위와 작위로서 이루어지는 쟁의수반행위를 구분하고,
+<ul>
+<li>근로자가 책임을 부담하게 되는 부분은 쟁의수반행위에서 발생하는 불법행위에 의한 것임을 보이고자 하며,</li>
+<li>노무제공의 부작위 자체는 우리 헌법이 보장하고자 하는 단체행동권의 한 내용이 될 수 있음을 제시하고자 한다.</li>
+</ul>
+</li>
+</ul>
+<h4 id="(3)-%EB%B0%A9%EC%86%A1%EC%9D%98-%EA%B3%B5%EC%A0%95%EC%84%B1%EA%B3%BC-%EC%9F%81%EC%9D%98%ED%96%89%EC%9C%84%EC%9D%98-%EC%A0%95%EB%8B%B9%EC%84%B1(2017%EB%85%84)" tabindex="-1">(3) 방송의 공정성과 쟁의행위의 정당성(2017년)</h4>
+<p>박지순(고려대학교 법학전문대학원 교수)</p>
+<ul>
+<li>MBC 노조 파업의 정당성에 관한 서울고등법원의 판결(이하 "이 사건 판결")은 방송사업의 특수성에 기초한 쟁의행위의 정당성 판단기준 뿐만 아니라 일반적인 쟁의행위의 정당성 판단 기준에 대해서도 몇 가지 논쟁거리를 제공하였다.
+<ul>
+<li>방송의 자유 또는 공정방송의 실현을 위하여 노동법은 방송사에 대한 방송제작 종사자(근로자)의 인사·경영관여를 제도적으로 허용해야 하는가?</li>
+<li>쟁의행위의 목적은 단체협약에 의하여 규율가능한 사항, 즉 근로조건이어야 하는데 방송의 공정성 보장이 근로조건의 의미로서 의무적 교섭사항에 해당하는가?</li>
+<li>근로조건이 아니라도 노사가 공정방송의 실현을 위해 모종의 제도나 절차에 관하여 교섭하고 있는 경우 노동조합이 그에 대해서도 쟁의행위로 자신의 주장을 관철할 수 있는가?</li>
+<li>단체협약의 준수를 요구하는 이른바 권리분쟁은 쟁의행위의 대상이 될 수 있는가 아니면 근로조건의 결정에 관한 이익분쟁만이 교섭 및 쟁의행위의 대상이 될 수 있는가? 단체협약의 준수를 요구하는 것이 이익분쟁인가?</li>
+</ul>
+</li>
+<li>이에 대한 답변을 요약하면 다음과 같다.
+<ul>
+<li>방송의 자유 주체는 방송사업자이며, 방송종사자도 국가 등 사회적 제 세력에 대해서는 방송의 자유를 주장할 수 있으나 내부적으로 근로계약의 상대방인 방송사업자를 상대로 방송의 자유를 주장할 수는 없다.</li>
+<li>공정방송에 대한 방송사업자의 책무를 실현하는 제도적 장치는 방송법 등 관계법령에 의해서 규율하는 것이 헌법적 정당성을 갖는다. 노동조합이 주장하는 방송의 자유, 독립성, 공정성의 문제는 국가와 방송사업자 간에 규율되어야 할 중립지대의 이슈이지 대립적, 투쟁적 교섭관계의 규율대상으로 볼 수는 없다.</li>
+<li>노동조합과 사용자가 공정방송의무 실현을 위해 상호 협력적인 관점에서 협의사항을 규정하고 있더라도 이는 의무적 교섭사항으로 인정되는 것은 아니고, 오히려 상호 협력적인 보충적 장치로서의 의미를 갖는데 불과하다.</li>
+<li>노동관계 당사자가 임의로 보충적 교섭을 수행하더라도 사용자가 요구사항에 반대하거나 협약체결에 이르지 않을 경우 노동조합은 쟁의행위를 통해 이를 관철할 수 없다. 또한 공정방송협의회의 구성 및 운영에 관한 단체협약의 조항을 이행하지 않았다는 이유로 이를 관철하기 위해 쟁의행위를 조직하는 것은 권리분쟁을 목적으로 하는 것이므로 위법하다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2.%ED%98%84%ED%96%89-%EB%B2%95%EB%A6%AC%EC%99%80-%ED%8C%90%EB%A1%80%EC%9D%98-%EA%B2%80%ED%86%A0" tabindex="-1">2.현행 법리와 판례의 검토</h3>
+<p>단체교섭사항의 범위에 대해 직접적으로 정하고 있는 법조문은 없으나, 노동조합 및 노동관계조정법(이하 '노동조합법'이라 한다)과 판례에 따라 단체교섭사항의 범위는 근로조건의 유지·개선과 근로자의 경제적·사회적 지위의 향상이라 할 수 있다.</p>
+<blockquote>
+<p>노동조합법 제1조(목적) 이 법은 헌법에 의한 근로자의 단결권ㆍ단체교섭권 및 단체행동권을 보장하여 근로조건의 유지ㆍ개선과 근로자의 경제적ㆍ사회적 지위의 향상을 도모하고, 노동관계를 공정하게 조정하여 노동쟁의를 예방ㆍ해결함으로써 산업평화의 유지와 국민경제의 발전에 이바지함을 목적으로 한다.</p>
+</blockquote>
+<p>법원은 99도4837(대법원 2001.10.25.) 판결에서 근로자의 쟁의행위가 정당행위가 되기 위한 네 가지 조건을 제시하였다.</p>
+<p>첫째, 그 주체가 단체교섭의 주체로 될 수 있는 자일 것
+둘째, 그 목적이 근로조건의 향상을 위한 노사간의 자치적 교섭을 조성하는데 있을 것
+셋째, 사용자가 근로자의 근로조건 개선에 관한 구체적인 요구에 대하여 단체교섭을 거부하였을 때 개시하되 특별한 사정이 없는 한 조합원의 찬성결정 등 법령이 규정한 절차를 거칠 것
+넷째, 그 수단과 방법이 사용자의 재산권과 조화를 이루어야 함은 물론 폭력의 행사에 해당하지 아니할 것</p>
+<blockquote>
+<p>대법원 2001. 10. 25. 선고 99도4837 판결 [업무방행]
+판결요지
+근로자의 쟁의행위가 형법상 정당행위가 되기 위하여는 첫째 그 주체가 단체교섭의 주체로 될 수 있는 자이어야 하고, 둘째 그 목적이 근로조건의 향상을 위한 노사간의 자치적 교섭을 조성하는 데에 있어야 하며, 셋째 사용자가 근로자의 근로조건 개선에 관한 구체적인 요구에 대하여 단체교섭을 거부하였을 때 개시하되 특별한 사정이 없는 한 조합원의 찬성결정 등 법령이 규정한 절차를 거쳐야 하고, 넷째 그 수단과 방법이 사용자의 재산권과 조화를 이루어야 함은 물론 폭력의 행사에 해당되지 아니하여야 한다는 여러 조건을 모두 구비하여야 하는바, ... (생략) ...</p>
+</blockquote>
+<p>특히 구조조정이나 합병 등 기업의 경쟁력을 강화하기 위한 경영주체의 경영상 조치가 노동쟁의의 대상이 될 수 있는지에 대해 여러 의견이 대립하였다.</p>
+<p>이에 대하여 법원은 '기업의 구조조정의 실시 여부는 경영주체에 의한 고도의 경영상 결단에 속하는 사항으로서 이는 원칙적으로 단체교섭의 대상이 될 수 없다'고 하면서, 그것이 긴박한 경영상의 필요나 합리적인 이유 없이 불순한 의도로 추진되는 등의 특별한 사정이 없는 한 노동조합이 그 실시를 반대하기 위하여 벌이는 쟁의행위에는 목적의 정당성을 인정할 수 없다는 입장이다.</p>
+<blockquote>
+<p>대법원 2003. 7. 22. 선고 2002도7225 판결 [업무방해]
+판결요지
+기업의 구조조정의 실시 여부는 경영주체에 의한 고도의 경영상 결단에 속하는 사항으로서 이는 원칙적으로 단체교섭의 대상이 될 수 없고, 그것이 긴박한 경영상의 필요나 합리적인 이유 없이 불순한 의도로 추진되는 등의 특별한 사정이 없는 한 노동조합이 그 실시를 반대하기 위하여 벌이는 쟁의행위에는 목적의 정당성을 인정할 수 없다.</p>
+</blockquote>
+<h3 id="3.%EB%AC%B8%EC%A0%9C%EC%A0%90%EC%9D%98-%EB%8F%84%EC%B6%9C" tabindex="-1">3.문제점의 도출</h3>
+<p>2025년 9월 노동조합법이 개정됨에 따라 노동쟁의의 범위가 확대되었다.</p>
+<p>개정 전 노동조합법에 따르면 노동쟁의는 "노동조합과 사용자 또는 사용자단체 간에 임금·근로시간·복지·해고 기타 대우 등 근로조건의 결정에 관한 주장의 불일치로 인하여 발생한 분쟁상태"를 의미했다.</p>
+<p>개정된 노동조합법에 따르면 기존 노동쟁의의 범위에 더해 '근로조건에 영향을 미치는 사업 경영상의 결정에 관한 주장의 불일치로 인해 발생한 분쟁상태'와 노동조합법 제92조 제2호 가목부터 라목까지의 사항에 관한 사용자의 명백한 단체협약 위반으로 인해 발생한 분쟁상태'가 노동쟁의의 범위에 포함된다.</p>
+<blockquote>
+<p>개정 전 노동조합법 제2조 제5호
+5. “노동쟁의”라 함은 노동조합과 사용자 또는 사용자단체(이하 “勞動關係 當事者”라 한다)간에 임금ㆍ근로시간ㆍ복지ㆍ해고 기타 대우등 근로조건의 결정에 관한 주장의 불일치로 인하여 발생한 분쟁상태를 말한다. 이 경우 주장의 불일치라 함은 당사자간에 합의를 위한 노력을 계속하여도 더이상 자주적 교섭에 의한 합의의 여지가 없는 경우를 말한다.</p>
+</blockquote>
+<blockquote>
+<p>개정 후 노동조합법 제2조 제5호
+5. “노동쟁의”라 함은 노동조합과 사용자 또는 사용자단체(이하 “勞動關係 當事者”라 한다)간에 임금ㆍ근로시간ㆍ복지ㆍ해고ㆍ근로자의 지위 기타 대우등 근로조건의 결정과 근로조건에 영향을 미치는 사업경영상의 결정에 관한 주장의 불일치 및 제92조제2호가목부터 라목까지의 사항에 관한 사용자의 명백한 단체협약 위반으로 인하여 발생한 분쟁상태를 말한다. 이 경우 주장의 불일치라 함은 당사자간에 합의를 위한 노력을 계속하여도 더이상 자주적 교섭에 의한 합의의 여지가 없는 경우를 말한다.</p>
+</blockquote>
+<blockquote>
+<p>노동조합법 제92조(벌칙) 제2호
+가. 임금ㆍ복리후생비, 퇴직금에 관한 사항
+나. 근로 및 휴게시간, 휴일, 휴가에 관한 사항
+다. 징계 및 해고의 사유와 중요한 절차에 관한 사항
+라. 안전보건 및 재해부조에 관한 사항</p>
+</blockquote>
+<p>이번 개정으로 확대된 노동쟁의의 범위 중 '제92조제2호가목부터 라목까지의 사항에 관한 사용자의 명백한 단체협약 위반으로 인하여 발생한 분쟁상태'는 해당 기업의 단체협약 내용 중 임금·복리후생비, 퇴직금, 근로·휴게시간, 휴일, 휴가, 징계 및 해고의 사유와 중요 절차, 안전보건 및 재해부조에 대한 내용을 사용자가 위반한 경우에 해당하는데, 이는 각 기업의 단체협약의 해석문제로 법적으로 다루기에 한계가 있다.</p>
+<p>한편 '근로조건에 영향을 미치는 사업경영상의 결정에 관한 주장의 불일치로 인하여 발생한 분쟁상태'는 기존의 판례 입장과 다른 내용이 입법된 것으로서 향후 노동쟁의의 범위를 어디까지 인정할지에 대한 불확실성이 커질 수 밖에 없다.</p>
+<p>이에 대해 고용노동부는 2026.2.24. 개정 노동조합법 해석지침을 배포하였는데, 근로조건에 영향을 미치는 사업경영상의 결정을 노동쟁의에 추가한 입법 취지에 대해 다음과 같이 설명하였다.</p>
+<blockquote>
+<p>입법 취지</p>
+<ul>
+<li>개정 전 노동조합법 및 판례에 따르면 근로자 지위 및 근로조건에 중대한 영향을 미치는 사업경영상의 결정도 노동쟁의 대상이 되지 않아, 단체교섭이 제한되고 쟁의행위의 목적상 불법이 되어 과도한 손해배상의 원인이 되었음</li>
+<li>이에 개정 노동조합법은 노동쟁의 정의 규정에 ‘근로조건의 결정’이라는 문언을 유지하면서도, 근로자 지위 박탈 등 근로조건에 중대한 영향을 미치는 정리해고 등 사업경영상의 결정을 추가하여 헌법상 노동3권을 실질적으로 보호하려는 것임
+<ul>
+<li>즉 사업경영상의 결정이 고용관계 등에 직접적인 영향을 미침에도 불구하고 단체교섭 대상에서 제외되었던 문제를 해결하기 위해 노동쟁의 대상을 확대하여 노사 간 실질적 교섭을 촉진하고, 노사자율에 의한 분쟁 해결을 도모하는데 목적이 있음</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>아울러 사업경영상의 결정은 다양한 층위와 유형으로 나타날 수 있으므로 개정법상 노동쟁의 대상 여부를 판단함에 있어 일률적으로 정형화하기 어려우며, 근로조건에 미치는 영향 등을 고려하여 사안별로 개별적·구체적으로 판단해야 한다고 하였는데, 이는 노동쟁의의 범위에 대한 명확한 기준이나 해석의 원칙이 아직 확립되지 않았음을 반영한다고 볼 수 있다.</p>
+<p>같은 해석지침에서 '근로조건에 영향을 미치는 사업경영상 결정' 구체적 판단기준을 제시하였는데,</p>
+<p>사업경영상의 결정 당시 근로자의 근로조건에 대한 영향이 추상적·잠재적 차원의 수준인 경우에는 이를 근로조건에 영향을 미치는 단체교섭 대상으로 보기 어렵다고 하면서, 기업투자, 합병, 분할, 양도 등의 결정 그 자체로는 근로조건에 실질적·구체적인 영향을 미친다고 보기 어렵다고 봄</p>
+<p>동시에 근로자 지위 또는 근로조건의 실질적·구체적으로 변동으로 초래하는 정리해고, 구조조정에 따른 배치전환 등은 단체교섭의 대상이 된다고 보았으며, 정리해고의 경우 기존 판례와 달리 단체교섭의 대상이 된다고 명시하였음</p>
+<h3 id="4.%EB%AC%B8%EC%A0%9C%EC%A0%90%EC%97%90-%EB%8C%80%ED%95%9C-%ED%95%84%EC%9E%90%EC%9D%98-%EA%B2%AC%ED%95%B4%EC%99%80-%EB%85%BC%EC%A6%9D" tabindex="-1">4.문제점에 대한 필자의 견해와 논증</h3>
+<p>고용노동부가 작성한 개정 노동조합법 해석지침을 요약하면 사업경영상 결정이 근로조건에 영향을 미치는지 아닌지는 해당 결정이 근로조건에 실질적·구체적 영향을 미치는지에 달려있다는 것이다.</p>
+<p>하지만, 이 정도 지침으로는 아직 어떤 사업경영상 결정이 근로조건에 영향을 미치는 결정인지 아닌지 예측하기가 어려운 것이 사실이며 실제 관련 내용에 대한 노동위원회의 결정과 법원의 소송 결과가 축적되면서 예측가능성이 높아질 것으로 본다.</p>
+<p>필자는 개정 노동조합법의 노동쟁의의 범위 확대에 대하여 보다 구체적인 기준이 필요하다고 생각하는데, 특히 적법한 노동쟁의만 정당행위로 인정받아 처벌을 면책받을 수 있기 때문에 노동쟁의의 범위를 명확하게 하는 것이 죄형법정주의에도 부합한다고 본다.</p>
+<p>이를 위해 몇 가지 구체적인 기준을 제안해보면 다음과 같다.</p>
+<p>첫째, 경영상 결정이 영향을 줄 수 있는 근로자의 규모가 얼마나 되는지 여부
+둘째, 경영상 결정이 실행되는 시점이 얼마나 가까운지 여부
+셋째, 경영상 결정이 직접 근로조건에 영향을 주는 것인지 아니면 추가적인 실행계획 등이 있어야만 근로조건에 영향을 주는 것인지 여부
+넷째, 경영상 결정이 인건비 절감 등 근로조건을 직접적으로 바꾸려는 목적인지 아니면 생산성 향상, 새로운 시장 확보 등 근로조건이 아닌 다른 목적을 위한 것인지 여부</p>
+<p>이러한 접근은 쟁의행위의 정당성에 대한 기존 대법원 판례의 접근 방법을 차용한 것인데, 대법원이 쟁의행위의 정당성을 판단함에 있어 주체, 목적, 절차, 수단과 방법에 대한 조건을 제시한 것과 같이 경영상의 결정에 대해서도 비슷한 접근을 시도한 결과이다.</p>
+<h3 id="5.%EA%B2%B0%EB%A1%A0" tabindex="-1">5.결론</h3>
+<p>노란봉투법이라고 불리는 개정 노동조합법은 경영주체의 경영상 조치가 쟁의행위의 대상이 되지 않는다는 법령과 판례의 입장을 지나치게 활용한 데서 발생한 일종의 반작용으로 볼 수 있다. 사용자가 경영상의 위기를 해결하기 위하여 근로자를 외주화하거나 공장을 해외로 이전하는 등의 방법을 너무 당연하게 사용한 것이 노동쟁의의 범위를 확대하는 계기가 되었다고 생각한다.</p>
+<p>개정 노동조합법은 잘못된 방식으로 사용자와 근로자 관계를 훼손한 여러 사례들이 사회적으로 더 이상 인정받을 수 없다는 일종의 사회적 신호로 볼 수 있다. 따라서 개정 노동조합법을 법리적인 관점에서만 바라보고 어떻게 하면 조금이라도 덜 손해볼지를 생각하기보다 어떻게하면 사용자와 근로자가 같은 목적을 향해 대화하고 협력할 수 있을지를 고민하는 것도 중요하다.</p>
+
+    </div>
+
+
+</body></html>
