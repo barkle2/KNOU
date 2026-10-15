@@ -1,0 +1,4 @@
+﻿model_type,model_name,max_len,layers,units,optimizer,num_words,embedding_dim,learning_rate,batch_size,dropout,epochs,test_loss,test_accuracy,status,error,seconds,difference_pp
+RNN,RNN__baseline,100,1,50,Adam,1000,100,0.001,100,0.0,20,1.9286748170852661,0.568121075630188,ok,,21.99842599999829,0.0
+RNN,RNN__learning_rate_0.0001,100,1,50,Adam,1000,100,0.0001,100,0.0,20,1.9368336200714111,0.5120213627815247,ok,,25.731723999999303,-5.609971284866333
+RNN,RNN__learning_rate_0.01,100,1,50,Adam,1000,100,0.01,100,0.0,20,2.722611665725708,0.4180765748023987,ok,,25.442928700000266,-15.00445008277893

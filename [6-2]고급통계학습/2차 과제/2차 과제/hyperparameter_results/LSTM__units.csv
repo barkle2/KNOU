@@ -1,0 +1,4 @@
+﻿model_type,model_name,max_len,layers,units,optimizer,num_words,embedding_dim,learning_rate,batch_size,dropout,epochs,test_loss,test_accuracy,status,error,seconds,difference_pp
+LSTM,LSTM__baseline,100,1,100,Adam,1000,100,0.001,100,0.0,20,1.1859360933303833,0.7123775482177734,ok,,137.97850239999934,0.0
+LSTM,LSTM__units_32,100,1,32,Adam,1000,100,0.001,100,0.0,20,1.3673757314682007,0.6869990825653076,ok,,53.164029700001265,-2.537846565246582
+LSTM,LSTM__units_50,100,1,50,Adam,1000,100,0.001,100,0.0,20,1.3410810232162476,0.6847729086875916,ok,,64.2432121999991,-2.7604639530181885

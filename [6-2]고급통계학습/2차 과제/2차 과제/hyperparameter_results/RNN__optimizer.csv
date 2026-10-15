@@ -1,0 +1,4 @@
+﻿model_type,model_name,max_len,layers,units,optimizer,num_words,embedding_dim,learning_rate,batch_size,dropout,epochs,test_loss,test_accuracy,status,error,seconds,difference_pp
+RNN,RNN__baseline,100,1,50,Adam,1000,100,0.001,100,0.0,20,1.9286748170852661,0.568121075630188,ok,,21.99842599999829,0.0
+RNN,RNN__optimizer_RMSprop,100,1,50,RMSprop,1000,100,0.001,100,0.0,20,1.8241477012634277,0.5739091634750366,ok,,29.851179699999193,0.5788087844848633
+RNN,RNN__optimizer_MomentumSGD,100,1,50,MomentumSGD,1000,100,0.001,100,0.0,20,2.383723735809326,0.4398931562900543,ok,,25.08412970000063,-12.822791934013367
